@@ -1,0 +1,31 @@
+{
+  "env": {
+    "resources": {
+      "nurse": {
+        "capacity": 1
+      }
+    },
+    "generators": {
+      "patients": {
+        "trajectory": "t1",
+        "dist": "%at(0,0,0)%"
+      }
+    }
+  },
+  "trajectories": {
+    "t1": [
+      {
+        "activity": "seize",
+        "resource": "nurse"
+      },
+      {
+        "activity": "timeout",
+        "task": "%3%"
+      },
+      {
+        "activity": "release",
+        "resource": "nurse"
+      }
+    ]
+  }
+}

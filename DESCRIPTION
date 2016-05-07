@@ -1,0 +1,20 @@
+Package: simmer.json
+Type: Package
+Title: Translates JSON into a simmer environment
+Version: 0.1.0
+Authors@R: person("Bart", "Smeets", email = "bartsmeets86@gmail.com",
+                  role = c("aut", "cre"))
+Description: Define a simmer simulation problem using JSON syntax.
+  This makes for easy sharing of simulation definitions and for easily digesting a
+  simulation definition through an API.
+License: MIT + file LICENSE
+LazyData: TRUE
+Suggests:
+    testthat,
+    magrittr
+RoxygenNote: 5.0.1
+Imports:
+    jsonlite
+Depends:
+    R (>= 3.1.2),
+    simmer (>= 3.2.1)

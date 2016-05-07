@@ -1,0 +1,51 @@
+{
+  "env": {
+    "resources": {
+      "nurse": {
+        "capacity": 1
+      },
+      "doctor": {
+        "capacity": 1
+      }
+    },
+    "generators": {
+      "patients": {
+        "trajectory": "t1",
+        "dist": "%at(0,0,0)%"
+      }
+    }
+  },
+  "trajectories": {
+    "t2": [
+      {
+        "activity": "timeout",
+        "task": "%3%"
+      }
+    ],
+    "t3": [
+      {
+        "activity": "timeout",
+        "task": "%6%"
+      }
+    ],
+    "t1": [
+      {
+        "activity": "seize",
+        "resource": "nurse"
+      },
+      {
+        "activity": "branch",
+        "option": "%sample(c(1),1)%",
+        "merge": "$c(1,1)$",
+        "trajectories": [
+          "t2",
+          "t3"
+        ]
+      },
+      {
+        "activity": "release",
+        "resource": "nurse"
+      }
+    ]
+  }
+}
