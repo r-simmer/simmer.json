@@ -1,0 +1,71 @@
+---
+title: "simmer.json"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+```
+
+> This is an experimental package. The R and JSON syntax can still change significantly.
+
+This package allows to read in a JSON object and translate it into a simmer environment. See below for an example definition:
+
+```{r cars}
+library(simmer.json)
+
+my_JSON<-'{
+  "env": {
+    "resources": {
+      "nurse": {
+        "capacity": 1
+      }
+    },
+    "generators": {
+      "patients": {
+        "trajectory": "t1",
+        "dist": "%at(0,0,0)%"
+      }
+    }
+  },
+  "trajectories": {
+    "t1": [
+      {
+        "activity": "seize",
+        "resource": "nurse"
+      },
+      {
+        "activity": "timeout",
+        "task": "%3%"
+      },
+      {
+        "activity": "release",
+        "resource": "nurse"
+      }
+    ]
+  }
+}
+'
+
+```
+
+You can translate this into simmer using:
+
+```{r}
+library(simmer.json)
+env<-
+  deserialise(my_JSON)
+
+env
+
+```
+
+And run the environment:
+
+```{r}
+env %>%
+  run()
+```
+
